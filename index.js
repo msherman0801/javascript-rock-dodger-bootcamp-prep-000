@@ -29,12 +29,12 @@ function checkCollision(rock) {
     const dodgerLeftEdge = positionToInteger(DODGER.style.left)
 
     // FIXME: The DODGER is 40 pixels wide -- how do we get the right edge?
-    const dodgerRightEdge = 0;
+    const dodgerRightEdge = positionToInteger(DODGER.style.left)
 
     const rockLeftEdge = positionToInteger(rock.style.left)
 
     // FIXME: The rock is 20 pixel's wide -- how do we get the right edge?
-    const rockRightEdge = 0;
+    const rockRightEdge = 20;
 
     if (false /**
                * Think about it -- what's happening here?
@@ -62,12 +62,13 @@ function createRock(x) {
 
   rock.style.top = top
 
+  GAME.appendChild(rock);
   /**
    * Now that we have a rock, we'll need to append
    * it to GAME and move it downwards.
    */
 
-
+  
   /**
    * This function moves the rock. (2 pixels at a time
    * seems like a good pace.)
@@ -108,10 +109,18 @@ function createRock(x) {
  * Finally, alert "YOU LOSE!" to the player.
  */
 function endGame() {
+  
 }
 
 function moveDodger(e) {
   // implement me!
+  var key = e.which;
+  
+  if (key == LEFT_ARROW) {
+    moveDodgerLeft();
+  } else if (key == RIGHT_ARROW) {
+    moveDodgerRight();
+  }
   /**
    * This function should call `moveDodgerLeft()`
    * if the left arrow is pressed and `moveDodgerRight()`
@@ -122,7 +131,8 @@ function moveDodger(e) {
 }
 
 function moveDodgerLeft() {
-  // implement me!
+  DODGET.style.left = `${4}px`;
+  window.requestAnimationFrame();
   /**
    * This function should move DODGER to the left
    * (mabye 4 pixels?). Use window.requestAnimationFrame()!
@@ -130,6 +140,8 @@ function moveDodgerLeft() {
 }
 
 function moveDodgerRight() {
+  DODGER.style.right = `${4}px`;
+  window.requestAnimationFrame();
   // implement me!
   /**
    * This function should move DODGER to the right
